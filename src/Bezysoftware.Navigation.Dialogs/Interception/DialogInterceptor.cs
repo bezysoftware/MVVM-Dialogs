@@ -13,13 +13,11 @@
     /// </summary>
     public class DialogInterceptor : INavigationInterceptor
     {
-        private readonly IDialogContainerFactory dialogActivator;
         private readonly Dictionary<Type, IDialogContainer> dialogs;
         private readonly IEnumerable<IDialogContainer> dialogContainers;
 
-        public DialogInterceptor(IEnumerable<IDialogContainer> dialogContainers,  IDialogContainerFactory dialogActivator)
+        public DialogInterceptor(IEnumerable<IDialogContainer> dialogContainers)
         {
-            this.dialogActivator = dialogActivator;
             this.dialogContainers = dialogContainers;
             this.dialogs = new Dictionary<Type, IDialogContainer>();
         }

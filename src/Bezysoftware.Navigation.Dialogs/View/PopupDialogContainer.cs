@@ -1,20 +1,26 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using System;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Input;
-
-namespace Bezysoftware.Navigation.Dialogs.View
+﻿namespace Bezysoftware.Navigation.Dialogs.View
 {
+    using Microsoft.Practices.ServiceLocation;
+    using System;
+    using Windows.UI.Core;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Controls.Primitives;
+    using Windows.UI.Xaml.Input;
+
+    /// <summary>
+    /// Dialog container which shows the dialog within a <see cref="Popup"/>. It correctly responses to Escape and Back button.
+    /// </summary>
     public class PopupDialogContainer : IDialogContainer
     {
         private INavigationService NavigationService;
         private Popup popup;
         private bool escapeDown;
 
+        /// <summary>
+        /// Hides the given dialog.
+        /// </summary>
+        /// <param name="viewType"> Type of dialog to hide. </param>
         public void Hide(Type viewType)
         {
             if (this.popup != null)
@@ -27,6 +33,10 @@ namespace Bezysoftware.Navigation.Dialogs.View
             }
         }
 
+        /// <summary>
+        /// Shows the given dialog.
+        /// </summary>
+        /// <param name="viewType"> Type of dialog to show. </param>
         public async void Show(Type viewType)
         {
             this.Initialize();

@@ -1,6 +1,7 @@
 ﻿namespace Bezysoftware.Navigation.Dialogs.View
 {
     using System;
+    using System.Threading.Tasks;
 
     using Bezysoftware.Navigation.Dialogs.Interception;
     using Bezysoftware.Navigation.Dialogs.ViewModel;
@@ -8,7 +9,6 @@
     using Microsoft.Practices.ServiceLocation;
     using Windows.UI.Popups;
     using Windows.Foundation;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Container for the built-in <see cref="MessageDialog"/>. See <seealso cref="SystemDialogViewModel"/> and <seealso cref="SystemDialogActivationData"/> for more details on activation. 
