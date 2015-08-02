@@ -40,7 +40,6 @@ namespace Bezysoftware.Navigation.Dialogs.Sample.ViewModels
                 .RegisterType<IEnumerable<IDialogContainer>, IDialogContainer[]>(new ContainerControlledLifetimeManager())
                 .RegisterType<IDialogContainer, SystemDialogContainer>("SystemContainer", new ContainerControlledLifetimeManager())
                 .RegisterType<IDialogContainer, PopupDialogContainer>("ContentContainer", new ContainerControlledLifetimeManager())
-                .RegisterType<IDialogContainerFactory, DialogContainerFactory>(new ContainerControlledLifetimeManager())
                 .RegisterType<MainViewModel>(new ContainerControlledLifetimeManager())
                 .RegisterType<DialogViewModel>(new ContainerControlledLifetimeManager())
                 .RegisterType<SystemDialogViewModel>(new ContainerControlledLifetimeManager());
