@@ -47,8 +47,6 @@ namespace Bezysoftware.Navigation.Dialogs.View
             this.popup.Child = wrapper;
 
             this.popup.IsOpen = true;
-
-            this.TryFocusFirstButton(wrapper);
         }
 
         private void PopupKeyDown(object sender, KeyRoutedEventArgs e)
@@ -86,22 +84,5 @@ namespace Bezysoftware.Navigation.Dialogs.View
                 this.NavigationService = ServiceLocator.Current.GetInstance<INavigationService>();
             }
         }
-    
-        // Attempts to locate first button and give it focus
-        private void TryFocusFirstButton(DependencyObject control)
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(control); i++)
-            {
-                var button = VisualTreeHelper.GetChild(control, i);
-                if (button is ButtonBase)
-                {
-                    (button as ButtonBase).Focus(FocusState.Programmatic);
-                    return;
-                }
-
-                this.TryFocusFirstButton(button);
-            }
-        }
-
     }
 }
