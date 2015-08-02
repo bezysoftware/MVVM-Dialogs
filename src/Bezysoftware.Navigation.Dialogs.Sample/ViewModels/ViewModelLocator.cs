@@ -6,12 +6,10 @@ namespace Bezysoftware.Navigation.Dialogs.Sample.ViewModels
     using Bezysoftware.Navigation.Lookup;
     using Bezysoftware.Navigation.Platform;
     using Bezysoftware.Navigation.StatePersistence;
-    using GalaSoft.MvvmLight.Ioc;
+    using Bezysoftware.Navigation.Dialogs.Sample.Views;
     using Microsoft.Practices.ServiceLocation;
     using Microsoft.Practices.Unity;
     using System.Collections.Generic;
-
-
 
     /// <summary>
     /// This class contains static references to all the view models in the
@@ -41,7 +39,7 @@ namespace Bezysoftware.Navigation.Dialogs.Sample.ViewModels
                 .RegisterType<IEnumerable<INavigationInterceptor>, INavigationInterceptor[]>(new ContainerControlledLifetimeManager())
                 .RegisterType<IEnumerable<IDialogContainer>, IDialogContainer[]>(new ContainerControlledLifetimeManager())
                 .RegisterType<IDialogContainer, SystemDialogContainer>("SystemContainer", new ContainerControlledLifetimeManager())
-                .RegisterType<IDialogContainer, ContentDialogContainer>("ContentContainer", new ContainerControlledLifetimeManager())
+                .RegisterType<IDialogContainer, PopupDialogContainer>("ContentContainer", new ContainerControlledLifetimeManager())
                 .RegisterType<IDialogContainerFactory, DialogContainerFactory>(new ContainerControlledLifetimeManager())
                 .RegisterType<MainViewModel>(new ContainerControlledLifetimeManager())
                 .RegisterType<DialogViewModel>(new ContainerControlledLifetimeManager())

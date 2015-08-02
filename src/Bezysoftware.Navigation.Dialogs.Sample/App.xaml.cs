@@ -5,7 +5,6 @@
     using System;
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
-    using Windows.UI.Popups;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Navigation;
@@ -15,10 +14,6 @@
     /// </summary>
     sealed partial class App : Application
     {
-        /// <summary>
-        /// Allows tracking page views, exceptions and other telemetry through the Microsoft Application Insights service.
-        /// </summary>
-        public static Microsoft.ApplicationInsights.TelemetryClient TelemetryClient;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -26,18 +21,9 @@
         /// </summary>
         public App()
         {
-            TelemetryClient = new Microsoft.ApplicationInsights.TelemetryClient();
-
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            this.UnhandledException += App_UnhandledException;
         }
-
-        private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            new MessageDialog(e.Exception.ToString()).ShowAsync();
-        }
-
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -63,6 +49,8 @@
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
 
+                BackButton.BackButtonManager.RegisterFrame(rootFrame, false, true);
+
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
@@ -76,9 +64,6 @@
 
             if (rootFrame.Content == null)
             {
-                // When the navigation stack isn't restored navigate to the first page,
-                // configuring the new page by passing required information as a navigation
-                // parameter
                 ServiceLocator.Current.GetInstance<INavigationService>().Navigate<MainViewModel>();
             }
             // Ensure the current window is active

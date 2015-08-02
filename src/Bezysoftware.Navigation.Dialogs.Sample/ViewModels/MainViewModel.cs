@@ -2,16 +2,13 @@ namespace Bezysoftware.Navigation.Dialogs.Sample.ViewModels
 {
     using GalaSoft.MvvmLight;
     using GalaSoft.MvvmLight.Command;
-    using System.Threading.Tasks;
-    using System;
     using Bezysoftware.Navigation.Dialogs.ViewModel;
-    using Bezysoftware.Navigation.Activation;
 
-    public class MainViewModel : ViewModelBase, IActivate<string>, IActivate<bool>
+    public class MainViewModel : ViewModelBase
     {
         private string dialogResult;
         private readonly INavigationService navigationService;
-        private RelayCommand showDialogCommand;
+        private RelayCommand<string> showDialogCommand;
 
         public MainViewModel(INavigationService navigationService)
         {
@@ -24,38 +21,33 @@ namespace Bezysoftware.Navigation.Dialogs.Sample.ViewModels
             set { this.Set(() => this.DialogResult, ref this.dialogResult, value); }
         }
 
-        public RelayCommand ShowDialogCommand
+        public RelayCommand<string> ShowDialogCommand
         {
             get
             {
-                return this.showDialogCommand ?? (this.showDialogCommand = new RelayCommand(() => this.ShowDialog()));
+                return this.showDialogCommand ?? (this.showDialogCommand = new RelayCommand<string>(s => this.ShowDialog(s)));
             }
         }
 
-        public void Activate(NavigationType navigationType, bool data)
+        private async void ShowDialog(string s)
         {
-            this.DialogResult = data.ToString();
-        }
-
-        public void Activate(NavigationType navigationType, string data)
-        {
-            this.DialogResult = data;
-        }
-
-        private async void ShowDialog()
-        {
-            // this.navigationService.Navigate<DialogViewModel>();
-            var data = new SystemDialogActivationData {
-                Title = "Operation confirmation",
-                Message = "Do you really want to do this? This action cannot be undone.",
-                Commands = new[] {
-                    "Yes",
-                    "No"
-                } 
-            };
-
-            //this.navigationService.Navigate<SystemDialogViewModel, SystemDialogActivationData>(data);
-            this.navigationService.Navigate<DialogViewModel>();
+            if (s == "popup")
+            {
+                this.DialogResult += " " + (await this.navigationService.NavigateWithResultAsync<DialogViewModel, bool>()).ToString();
+            }
+            else if (s == "system")
+            {
+                var data = new SystemDialogActivationData
+                {
+                    Title = "Operation confirmation",
+                    Message = "Do you really want to do this? Nothing will happen.",
+                    Commands = new[] {
+                        "Yes",
+                        "No"
+                    }
+                };
+                this.DialogResult += " " + await this.navigationService.NavigateWithResultAsync<SystemDialogViewModel, SystemDialogActivationData, string>(data);
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Bezysoftware.Navigation.Dialogs.Sample
+﻿namespace Bezysoftware.Navigation.Dialogs.Sample.Views
 {
     using Bezysoftware.Navigation.Dialogs.Sample.ViewModels;
     using Bezysoftware.Navigation.Lookup;

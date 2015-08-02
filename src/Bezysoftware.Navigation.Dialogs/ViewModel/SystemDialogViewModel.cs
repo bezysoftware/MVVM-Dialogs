@@ -1,11 +1,11 @@
 ﻿namespace Bezysoftware.Navigation.Dialogs.ViewModel
 {
-    using System;
-    using System.Threading.Tasks;
-
     using Bezysoftware.Navigation.StatePersistence;
     using Bezysoftware.Navigation.Activation;
 
+    /// <summary>
+    /// ViewModel which is used by <see cref="SystemDialogContainer"/>.
+    /// </summary>
     [StatePersistenceBehavior(StatePersistenceBehaviorType.None)]
     public class SystemDialogViewModel : IActivate<SystemDialogActivationData>
     {

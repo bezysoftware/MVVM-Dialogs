@@ -5,10 +5,11 @@
     using Bezysoftware.Navigation.Dialogs.View;
     using Bezysoftware.Navigation.Lookup;
     using Microsoft.Practices.ServiceLocation;
+    using Windows.UI.Xaml.Controls;
 
     [AssociatedViewModel(typeof(DialogViewModel))]
-    [Dialog(typeof(ContentDialogContainer))]
-    public sealed partial class Dialog : VisualDialogContainer
+    [DialogContainer(typeof(PopupDialogContainer))]
+    public sealed partial class Dialog : UserControl
     {
         public Dialog()
         {
