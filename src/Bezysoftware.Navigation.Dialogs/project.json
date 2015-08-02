@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "Bezysoftware.Navigation": "0.0.8-beta",
+    "Bezysoftware.Navigation": "1.0.0",
     "Bezysoftware.Navigation.BackButton": "1.0.1",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
   },
