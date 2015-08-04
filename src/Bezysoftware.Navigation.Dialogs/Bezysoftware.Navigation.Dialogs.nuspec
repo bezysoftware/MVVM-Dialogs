@@ -14,5 +14,10 @@
     <releaseNotes></releaseNotes>
     <copyright>Copyright bezysoftware 2015</copyright>
     <tags>MVVM UWP Navigation Dialogs</tags>
+    <dependencies>
+      <group>
+        <dependency id="Bezysoftware.Navigation" version="1.0.1" />
+      </group>
+    </dependencies>
   </metadata>
 </package>
