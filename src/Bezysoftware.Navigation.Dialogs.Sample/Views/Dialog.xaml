@@ -29,7 +29,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Text="Some question" />
-        <Button Grid.Row="1" Grid.Column="1" Content="Yes" Padding="24 4" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <Button Grid.Row="1" Grid.Column="1" Content="Yes" Padding="24 4" HorizontalAlignment="Left" VerticalAlignment="Center" x:Name="OkButton">
             <i:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="Click">
                     <nav:GoBackAction>

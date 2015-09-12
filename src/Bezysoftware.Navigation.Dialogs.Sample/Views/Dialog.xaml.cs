@@ -1,5 +1,6 @@
 ﻿namespace Bezysoftware.Navigation.Dialogs.Sample.Views
 {
+    using Windows.UI.Xaml;
     using Bezysoftware.Navigation.Dialogs.Interception;
     using Bezysoftware.Navigation.Dialogs.Sample.ViewModels;
     using Bezysoftware.Navigation.Dialogs.View;
@@ -14,6 +15,12 @@
         public Dialog()
         {
             this.InitializeComponent();
+            this.Loaded += DialogLoaded;
+        }
+
+        private void DialogLoaded(object sender, RoutedEventArgs e)
+        {
+            this.OkButton.Focus(FocusState.Pointer);
         }
 
         private void YesClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)

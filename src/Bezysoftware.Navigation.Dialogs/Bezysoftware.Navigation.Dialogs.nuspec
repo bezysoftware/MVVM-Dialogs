@@ -16,7 +16,7 @@
     <tags>MVVM UWP Navigation Dialogs</tags>
     <dependencies>
       <group>
-        <dependency id="Bezysoftware.Navigation" version="1.0.5" />
+        <dependency id="Bezysoftware.Navigation" />
       </group>
     </dependencies>
   </metadata>

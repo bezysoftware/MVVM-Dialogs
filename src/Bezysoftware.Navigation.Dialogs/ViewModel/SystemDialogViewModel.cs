@@ -2,6 +2,7 @@
 {
     using Bezysoftware.Navigation.StatePersistence;
     using Bezysoftware.Navigation.Activation;
+    using Bezysoftware.Navigation.Dialogs.View;
 
     /// <summary>
     /// ViewModel which is used by <see cref="SystemDialogContainer"/>.

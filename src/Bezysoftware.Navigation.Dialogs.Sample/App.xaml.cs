@@ -49,7 +49,7 @@
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
 
-                BackButton.BackButtonManager.RegisterFrame(rootFrame, false, true);
+                BackButton.BackButtonManager.RegisterFrame(rootFrame, true, true);
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 

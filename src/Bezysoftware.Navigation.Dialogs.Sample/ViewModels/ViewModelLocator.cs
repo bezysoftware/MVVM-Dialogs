@@ -10,6 +10,7 @@ namespace Bezysoftware.Navigation.Dialogs.Sample.ViewModels
     using Microsoft.Practices.ServiceLocation;
     using Microsoft.Practices.Unity;
     using System.Collections.Generic;
+    using Bezysoftware.Navigation.Dialogs.Lookup;
 
     /// <summary>
     /// This class contains static references to all the view models in the
@@ -28,7 +29,7 @@ namespace Bezysoftware.Navigation.Dialogs.Sample.ViewModels
 
             unity
                 .RegisterType<INavigationService, NavigationService>(new ContainerControlledLifetimeManager())
-                .RegisterType<IViewLocator, ViewLocator>(new ContainerControlledLifetimeManager())
+                .RegisterType<IViewLocator, AdaptiveViewLocator>(new ContainerControlledLifetimeManager())
                 .RegisterType<IViewModelLocator, ViewModelServiceLocator>(new ContainerControlledLifetimeManager())
                 .RegisterType<IPlatformNavigator, PlatformNavigator>(new ContainerControlledLifetimeManager())
                 .RegisterType<IApplicationFrameProvider, CurrentWindowFrameProvider>(new ContainerControlledLifetimeManager())
@@ -38,8 +39,10 @@ namespace Bezysoftware.Navigation.Dialogs.Sample.ViewModels
                 .RegisterType<INavigationInterceptor, DialogInterceptor>("Dialog", new ContainerControlledLifetimeManager())
                 .RegisterType<IEnumerable<INavigationInterceptor>, INavigationInterceptor[]>(new ContainerControlledLifetimeManager())
                 .RegisterType<IEnumerable<IDialogContainer>, IDialogContainer[]>(new ContainerControlledLifetimeManager())
+                .RegisterType<IEnumerable<IViewLookupStrategy>, IViewLookupStrategy[]>(new ContainerControlledLifetimeManager())
                 .RegisterType<IDialogContainer, SystemDialogContainer>("SystemContainer", new ContainerControlledLifetimeManager())
                 .RegisterType<IDialogContainer, PopupDialogContainer>("ContentContainer", new ContainerControlledLifetimeManager())
+                .RegisterType<IViewLookupStrategy, WindowWidthDialogLookupStrategy>("WindowWidth", new ContainerControlledLifetimeManager(), new InjectionProperty("MinWidthForDialog", 700.0))
                 .RegisterType<MainViewModel>(new ContainerControlledLifetimeManager())
                 .RegisterType<DialogViewModel>(new ContainerControlledLifetimeManager())
                 .RegisterType<SystemDialogViewModel>(new ContainerControlledLifetimeManager());
