@@ -130,12 +130,6 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bezysoftware.Navigation.Dialogs\Bezysoftware.Navigation.Dialogs.csproj">
-      <Project>{1b074908-0ab5-46c9-b852-05820ff86e75}</Project>
-      <Name>Bezysoftware.Navigation.Dialogs</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="Views\Dialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -149,6 +143,12 @@
     <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
       <Name>Behaviors SDK %28XAML%29</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bezysoftware.Navigation.Dialogs\Bezysoftware.Navigation.Dialogs.csproj">
+      <Project>{1b074908-0ab5-46c9-b852-05820ff86e75}</Project>
+      <Name>Bezysoftware.Navigation.Dialogs</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

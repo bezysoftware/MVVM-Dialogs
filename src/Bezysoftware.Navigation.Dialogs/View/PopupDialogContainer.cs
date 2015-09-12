@@ -2,6 +2,7 @@
 {
     using Microsoft.Practices.ServiceLocation;
     using System;
+    using System.Threading.Tasks;
     using Windows.UI.Core;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
@@ -13,7 +14,8 @@
     /// </summary>
     public class PopupDialogContainer : IDialogContainer
     {
-        private INavigationService NavigationService;
+        protected INavigationService NavigationService;
+
         private Popup popup;
         private bool escapeDown;
 
@@ -29,7 +31,7 @@
                 Window.Current.Content.KeyUp -= this.PopupKeyUp;
                 Window.Current.Content.KeyDown -= this.PopupKeyDown;
 
-                this.popup.IsOpen = false;
+                this.HideVisualContainer();
             }
         }
 
@@ -47,16 +49,30 @@
             Window.Current.Content.KeyUp += this.PopupKeyUp;
             Window.Current.Content.KeyDown += this.PopupKeyDown;
 
-            var wrapper = new Grid();
-            wrapper.Width = Window.Current.Bounds.Width;
-            wrapper.Height = Window.Current.Bounds.Height;
-            wrapper.Children.Add((UIElement)Activator.CreateInstance(viewType));            
+            var child = (UIElement) Activator.CreateInstance(viewType);
+            var wrapper = CreateVisualContainer(child);
+
+            this.UpdateWrapperSize(wrapper, Window.Current.Bounds.Width, Window.Current.Bounds.Height);
 
             this.popup = new Popup();
             this.popup.IsLightDismissEnabled = false;
             this.popup.Child = wrapper;
 
             this.popup.IsOpen = true;
+        }
+
+        protected virtual FrameworkElement CreateVisualContainer(UIElement child)
+        {
+            var wrapper = new Grid();
+            wrapper.Width = Window.Current.Bounds.Width;
+            wrapper.Height = Window.Current.Bounds.Height;
+            wrapper.Children.Add(child);
+            return wrapper;
+        }
+
+        protected virtual void HideVisualContainer()
+        {
+            this.popup.IsOpen = false;
         }
 
         private void PopupKeyDown(object sender, KeyRoutedEventArgs e)
@@ -82,8 +98,13 @@
         private void WindowSizeChanged(object sender, WindowSizeChangedEventArgs e)
         {
             var wrapper = this.popup.Child as FrameworkElement;
-            wrapper.Width = e.Size.Width;
-            wrapper.Height = e.Size.Height;
+            this.UpdateWrapperSize(wrapper, e.Size.Width, e.Size.Height);
+        }
+
+        private void UpdateWrapperSize(FrameworkElement wrapper, double width, double height)
+        {
+            wrapper.Width = width;
+            wrapper.Height = height;
         }
 
         private void Initialize()
