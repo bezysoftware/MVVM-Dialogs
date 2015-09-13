@@ -99,6 +99,7 @@
     <Compile Include="AssemblyResolver\ThisAssemblyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DialogViewModel.cs" />
+    <Compile Include="ViewModels\DialogWithoutPageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\Dialog.xaml.cs">
@@ -106,6 +107,9 @@
     </Compile>
     <Compile Include="Views\DialogPage.xaml.cs">
       <DependentUpon>DialogPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DialogWithoutPage.xaml.cs">
+      <DependentUpon>DialogWithoutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -138,6 +142,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DialogPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DialogWithoutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

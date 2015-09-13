@@ -1,22 +1,19 @@
 ﻿<UserControl
-    x:Class="Bezysoftware.Navigation.Dialogs.Sample.Views.Dialog"
+    x:Class="Bezysoftware.Navigation.Dialogs.Sample.Views.DialogWithoutPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Bezysoftware.Navigation.Dialogs.Sample.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:dlg="using:Bezysoftware.Navigation.Dialogs.View"
-    xmlns:nav="using:Bezysoftware.Navigation.UI"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    VerticalAlignment="Stretch"
-    HorizontalAlignment="Stretch"
+    xmlns:ui="using:Bezysoftware.Navigation.UI"
     mc:Ignorable="d"
-    d:DesignHeight="400"
-    d:DesignWidth="500">
+    d:DesignHeight="300"
+    d:DesignWidth="400">
     <Grid>
         <Grid.Background>
-            <SolidColorBrush Color="Black" Opacity="0.3" />
+            <SolidColorBrush Color="Green" Opacity="0.3" />
         </Grid.Background>
         <Grid Background="White" VerticalAlignment="Center" HorizontalAlignment="Stretch" Padding="15">
             <Grid.ColumnDefinitions>
@@ -30,27 +27,27 @@
             </Grid.RowDefinitions>
             <TextBlock Text="Some question" />
             <Button Grid.Row="1" Grid.Column="1" Content="Yes" Padding="24 4" HorizontalAlignment="Left" VerticalAlignment="Center" x:Name="OkButton">
-                <i:Interaction.Behaviors>
+                <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="Click">
-                        <nav:GoBackAction>
-                            <nav:GoBackAction.DeactivationData>
+                     <ui:GoBackAction>
+                         <ui:GoBackAction.DeactivationData>
                                 <x:Boolean>True</x:Boolean>
-                            </nav:GoBackAction.DeactivationData>
-                        </nav:GoBackAction>
+                         </ui:GoBackAction.DeactivationData>
+                     </ui:GoBackAction>
                     </core:EventTriggerBehavior>
-                </i:Interaction.Behaviors>
+                </interactivity:Interaction.Behaviors>
             </Button>
 
             <Button Grid.Row="1" Grid.Column="2" Content="No" Padding="24 4" HorizontalAlignment="Right" VerticalAlignment="Center">
-                <i:Interaction.Behaviors>
+                <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="Click">
-                        <nav:GoBackAction>
-                            <nav:GoBackAction.DeactivationData>
+                        <ui:GoBackAction>
+                            <ui:GoBackAction.DeactivationData>
                                 <x:Boolean>False</x:Boolean>
-                            </nav:GoBackAction.DeactivationData>
-                        </nav:GoBackAction>
+                            </ui:GoBackAction.DeactivationData>
+                        </ui:GoBackAction>
                     </core:EventTriggerBehavior>
-                </i:Interaction.Behaviors>
+                </interactivity:Interaction.Behaviors>
             </Button>
         </Grid>
     </Grid>

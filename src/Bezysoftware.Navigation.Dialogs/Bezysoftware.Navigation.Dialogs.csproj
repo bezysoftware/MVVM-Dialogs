@@ -116,11 +116,9 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lookup\AssociatedDialogViewModel.cs" />
     <Compile Include="Interception\DialogContainerAttribute.cs" />
     <Compile Include="Interception\DialogInterceptor.cs" />
-    <Compile Include="Lookup\AdaptiveViewLocator.cs" />
-    <Compile Include="Lookup\IViewLookupStrategy.cs" />
-    <Compile Include="Lookup\WindowWidthDialogLookupStrategy.cs" />
     <Compile Include="NavigationServiceExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\SystemDialogActivationData.cs" />

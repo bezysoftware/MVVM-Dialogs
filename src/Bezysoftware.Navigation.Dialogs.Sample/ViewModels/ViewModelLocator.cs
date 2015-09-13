@@ -29,22 +29,21 @@ namespace Bezysoftware.Navigation.Dialogs.Sample.ViewModels
 
             unity
                 .RegisterType<INavigationService, NavigationService>(new ContainerControlledLifetimeManager())
-                .RegisterType<IViewLocator, AdaptiveViewLocator>(new ContainerControlledLifetimeManager())
+                .RegisterType<IViewLocator, ViewLocator>(new ContainerControlledLifetimeManager())
                 .RegisterType<IViewModelLocator, ViewModelServiceLocator>(new ContainerControlledLifetimeManager())
                 .RegisterType<IPlatformNavigator, PlatformNavigator>(new ContainerControlledLifetimeManager())
                 .RegisterType<IApplicationFrameProvider, CurrentWindowFrameProvider>(new ContainerControlledLifetimeManager())
                 .RegisterType<IStatePersistor, StatePersistor>(new ContainerControlledLifetimeManager())
                 .RegisterType<IAssemblyResolver, ThisAssemblyResolver>(new ContainerControlledLifetimeManager())
+                .RegisterType<INavigationInterceptor, DialogInterceptor>("Dialog", new ContainerControlledLifetimeManager(), new InjectionProperty("InnerNavigationInterceptor", new ResolvedParameter(typeof(INavigationInterceptor), "Adaptive")))
                 .RegisterType<INavigationInterceptor, AdaptiveNavigationInterceptor>("Adaptive", new ContainerControlledLifetimeManager())
-                .RegisterType<INavigationInterceptor, DialogInterceptor>("Dialog", new ContainerControlledLifetimeManager())
                 .RegisterType<IEnumerable<INavigationInterceptor>, INavigationInterceptor[]>(new ContainerControlledLifetimeManager())
                 .RegisterType<IEnumerable<IDialogContainer>, IDialogContainer[]>(new ContainerControlledLifetimeManager())
-                .RegisterType<IEnumerable<IViewLookupStrategy>, IViewLookupStrategy[]>(new ContainerControlledLifetimeManager())
                 .RegisterType<IDialogContainer, SystemDialogContainer>("SystemContainer", new ContainerControlledLifetimeManager())
                 .RegisterType<IDialogContainer, PopupDialogContainer>("ContentContainer", new ContainerControlledLifetimeManager())
-                .RegisterType<IViewLookupStrategy, WindowWidthDialogLookupStrategy>("WindowWidth", new ContainerControlledLifetimeManager(), new InjectionProperty("MinWidthForDialog", 700.0))
                 .RegisterType<MainViewModel>(new ContainerControlledLifetimeManager())
                 .RegisterType<DialogViewModel>(new ContainerControlledLifetimeManager())
+                .RegisterType<DialogWithoutPageViewModel>(new ContainerControlledLifetimeManager())
                 .RegisterType<SystemDialogViewModel>(new ContainerControlledLifetimeManager());
 
             // manually register association for the main page to speed up application startup

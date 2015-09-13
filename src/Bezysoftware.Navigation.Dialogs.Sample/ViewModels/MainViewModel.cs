@@ -35,6 +35,10 @@ namespace Bezysoftware.Navigation.Dialogs.Sample.ViewModels
             {
                 this.DialogResult += " " + (await this.navigationService.NavigateWithResultAsync<DialogViewModel, bool>()).ToString();
             }
+            else if (s == "popupNoPage")
+            {
+                this.DialogResult += " " + (await this.navigationService.NavigateWithResultAsync<DialogWithoutPageViewModel, bool>()).ToString();
+            }
             else if (s == "system")
             {
                 var data = new SystemDialogActivationData

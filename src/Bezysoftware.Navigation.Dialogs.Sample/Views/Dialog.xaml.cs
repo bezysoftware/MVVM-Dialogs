@@ -8,7 +8,6 @@
     using Microsoft.Practices.ServiceLocation;
     using Windows.UI.Xaml.Controls;
 
-    [AssociatedViewModel(typeof(DialogViewModel))]
     [DialogContainer(typeof(PopupDialogContainer))]
     public sealed partial class Dialog : UserControl
     {

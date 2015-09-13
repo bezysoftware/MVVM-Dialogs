@@ -1,6 +1,7 @@
 ﻿namespace Bezysoftware.Navigation.Dialogs.Interception
 {
     using System;
+    using Bezysoftware.Navigation.Dialogs.View;
 
     /// <summary>
     /// Attribute identifying dialog controls.
