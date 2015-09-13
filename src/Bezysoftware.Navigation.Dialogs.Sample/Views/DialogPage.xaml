@@ -8,6 +8,6 @@
     mc:Ignorable="d">
 
     <Grid Background="Red">
-        <local:Dialog />
+        <local:Dialog Margin="12 24 36 48" />
     </Grid>
 </Page>

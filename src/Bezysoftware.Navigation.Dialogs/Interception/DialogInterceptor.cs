@@ -46,15 +46,16 @@
         {
             var intercepted = this.InnerNavigationInterceptor?.InterceptNavigation(targetViewType) ?? false;
             var page = this.IsPageType(targetViewType);
+            var viewTypeOverride = this.GetViewTypeOverride(targetViewType);
 
             if (page && !intercepted)
             {
                 // page, no interception, just navigate to that page. Also if for some reason a dialog is already displayed, hide it.
                 this.HideDialog(targetViewType);
+                this.HideDialog(viewTypeOverride);
                 return false;
             }
 
-            var viewTypeOverride = this.GetViewTypeOverride(targetViewType);
             if (page && viewTypeOverride == null)
             {
                 // page, no associated dialog (via AssociatedDialogViewModel), navigate to that page. 
@@ -105,7 +106,7 @@
 
         private void HideDialog(Type viewType)
         {
-            if (this.dialogs.ContainsKey(viewType))
+            if (viewType != null && this.dialogs.ContainsKey(viewType))
             {
                 this.dialogs[viewType].Hide(viewType);
                 this.dialogs.Remove(viewType);
