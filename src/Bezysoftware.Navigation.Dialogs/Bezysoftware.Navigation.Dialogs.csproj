@@ -125,8 +125,18 @@
     <Compile Include="ViewModel\SystemDialogViewModel.cs" />
     <Compile Include="View\IDialogContainer.cs" />
     <Compile Include="View\PopupDialogContainer.cs" />
+    <Compile Include="View\SlidingDialogContainer.cs" />
     <Compile Include="View\SystemDialogContainer.cs" />
+    <Compile Include="View\Xaml\SlidingDialogContainerControl.xaml.cs">
+      <DependentUpon>SlidingDialogContainerControl.xaml</DependentUpon>
+    </Compile>
     <Content Include="Properties\Bezysoftware.Navigation.Dialogs.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="View\Xaml\SlidingDialogContainerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

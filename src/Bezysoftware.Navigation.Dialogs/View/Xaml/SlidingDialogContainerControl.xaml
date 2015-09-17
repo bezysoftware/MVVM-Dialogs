@@ -1,0 +1,41 @@
+﻿<UserControl
+    x:Class="Bezysoftware.Navigation.Dialogs.View.Xaml.SlidingDialogContainerControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Bezysoftware.Navigation.Dialogs.View.Xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Storyboard x:Name="ShowPaneAnimation">
+            <DoubleAnimation Duration="0:0:0.2" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ContentPresenter" d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="HidePaneAnimation">
+            <DoubleAnimation Duration="0:0:0.2" To="400"  Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ContentPresenter">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid Background="{ThemeResource SettingsDialogBackground}" Tapped="OverlayTapped">
+        <ContentPresenter
+            x:Name="ContentPresenter"
+            Tapped="ContentPresenterTapped"
+            HorizontalAlignment="Right"
+            MaxWidth="400"
+            Background="{ThemeResource SettingsDialogPaneBackground}"
+            VerticalAlignment="Stretch" 
+            RenderTransformOrigin="0.5,0.5">
+            <ContentPresenter.RenderTransform>
+                <CompositeTransform TranslateX="400"/>
+            </ContentPresenter.RenderTransform>
+        </ContentPresenter>
+    </Grid>
+</UserControl>

@@ -14,11 +14,13 @@
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Button Content="Show system dialog" Command="{Binding ShowDialogCommand}" CommandParameter="system" HorizontalAlignment="Center" />
-        <Button Content="Show custom dialog" Command="{Binding ShowDialogCommand}" CommandParameter="popup" Grid.Column="1" HorizontalAlignment="Center" />
-        <Button Content="Show custom dialog w/o page" Command="{Binding ShowDialogCommand}" CommandParameter="popupNoPage" Grid.Column="2" HorizontalAlignment="Center" />
+        <Button Content="system dialog" Command="{Binding ShowDialogCommand}" CommandParameter="system" HorizontalAlignment="Center" />
+        <Button Content="custom dialog" Command="{Binding ShowDialogCommand}" CommandParameter="popup" Grid.Column="1" HorizontalAlignment="Center" />
+        <Button Content="custom dialog w/o page" Command="{Binding ShowDialogCommand}" CommandParameter="popupNoPage" Grid.Column="2" HorizontalAlignment="Center" />
+        <Button Content="sliding dialog" Command="{Binding ShowDialogCommand}" CommandParameter="sliding" Grid.Column="3" HorizontalAlignment="Center" />
         
-        <TextBlock Text="{Binding DialogResult, FallbackValue=Result}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="3" Margin="0 96 0 0" />
+        <TextBlock Text="{Binding DialogResult, FallbackValue=Result}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="4" Margin="0 96 0 0" />
     </Grid>
 </Page>

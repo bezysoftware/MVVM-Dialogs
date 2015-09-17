@@ -39,6 +39,10 @@ namespace Bezysoftware.Navigation.Dialogs.Sample.ViewModels
             {
                 this.DialogResult += " " + (await this.navigationService.NavigateWithResultAsync<DialogWithoutPageViewModel, bool>()).ToString();
             }
+            else if (s == "sliding")
+            {
+                await this.navigationService.NavigateAsync<SlidingDialogViewModel>();
+            }
             else if (s == "system")
             {
                 var data = new SystemDialogActivationData

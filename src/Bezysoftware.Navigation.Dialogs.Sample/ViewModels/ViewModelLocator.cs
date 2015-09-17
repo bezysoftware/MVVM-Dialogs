@@ -21,7 +21,7 @@ namespace Bezysoftware.Navigation.Dialogs.Sample.ViewModels
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
         /// </summary>
-        public ViewModelLocator()
+        static ViewModelLocator()
         {
             var unity = new UnityContainer();
 
@@ -41,7 +41,9 @@ namespace Bezysoftware.Navigation.Dialogs.Sample.ViewModels
                 .RegisterType<IEnumerable<IDialogContainer>, IDialogContainer[]>(new ContainerControlledLifetimeManager())
                 .RegisterType<IDialogContainer, SystemDialogContainer>("SystemContainer", new ContainerControlledLifetimeManager())
                 .RegisterType<IDialogContainer, PopupDialogContainer>("ContentContainer", new ContainerControlledLifetimeManager())
+                .RegisterType<IDialogContainer, SlidingDialogContainer>("SlidingContainer", new ContainerControlledLifetimeManager())
                 .RegisterType<MainViewModel>(new ContainerControlledLifetimeManager())
+                .RegisterType<SlidingDialogViewModel>(new ContainerControlledLifetimeManager())
                 .RegisterType<DialogViewModel>(new ContainerControlledLifetimeManager())
                 .RegisterType<DialogWithoutPageViewModel>(new ContainerControlledLifetimeManager())
                 .RegisterType<SystemDialogViewModel>(new ContainerControlledLifetimeManager());
@@ -56,6 +58,10 @@ namespace Bezysoftware.Navigation.Dialogs.Sample.ViewModels
             {
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
+        }
+
+        public static void Init()
+        {
         }
     }
 }

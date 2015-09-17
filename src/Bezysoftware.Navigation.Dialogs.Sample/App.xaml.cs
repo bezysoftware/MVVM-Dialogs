@@ -39,6 +39,7 @@
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
+            ViewModelLocator.Init();
 
             Frame rootFrame = Window.Current.Content as Frame;
 
