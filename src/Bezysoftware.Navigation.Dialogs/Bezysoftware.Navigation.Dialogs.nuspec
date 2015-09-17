@@ -20,4 +20,12 @@
       </group>
     </dependencies>
   </metadata>
+  <files>
+    <file src="bin\Debug\Bezysoftware.Navigation.Dialogs\View\Xaml\SlidingDialogContainerControl.xaml" target="lib\.NETCore50\Bezysoftware.Navigation.Dialogs\View\Xaml\SlidingDialogContainerControl.xaml" />
+    <file src="bin\Debug\Bezysoftware.Navigation.Dialogs\Bezysoftware.Navigation.Dialogs.xr.xml" target="lib\.NETCore50\Bezysoftware.Navigation.Dialogs\Bezysoftware.Navigation.Dialogs.xr.xml" />
+    <file src="bin\Debug\Bezysoftware.Navigation.Dialogs\Properties\Bezysoftware.Navigation.Dialogs.rd.xml" target="lib\.NETCore50\Bezysoftware.Navigation.Dialogs\Properties\Bezysoftware.Navigation.Dialogs.rd.xml" />
+    <file src="bin\Debug\Bezysoftware.Navigation.Dialogs.dll" target="lib\.NETCore50\Bezysoftware.Navigation.Dialogs.dll" />
+    <file src="bin\Debug\Bezysoftware.Navigation.Dialogs.pri" target="lib\.NETCore50\Bezysoftware.Navigation.Dialogs.pri" />
+    <file src="bin\Debug\Bezysoftware.Navigation.Dialogs.pdb" target="lib\.NETCore50\Bezysoftware.Navigation.Dialogs.pdb" />
+  </files>
 </package>

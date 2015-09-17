@@ -24,13 +24,13 @@
         </Storyboard>
     </UserControl.Resources>
 
-    <Grid Background="{ThemeResource SettingsDialogBackground}" Tapped="OverlayTapped">
+    <Grid Background="{ThemeResource SlidingDialogBackground}" Tapped="OverlayTapped">
         <ContentPresenter
             x:Name="ContentPresenter"
             Tapped="ContentPresenterTapped"
             HorizontalAlignment="Right"
             MaxWidth="400"
-            Background="{ThemeResource SettingsDialogPaneBackground}"
+            Background="{ThemeResource SlidingDialogPaneBackground}"
             VerticalAlignment="Stretch" 
             RenderTransformOrigin="0.5,0.5">
             <ContentPresenter.RenderTransform>

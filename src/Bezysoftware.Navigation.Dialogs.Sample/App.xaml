@@ -7,7 +7,7 @@
     <Application.Resources>
         <vm:ViewModelLocator x:Key="Locator" xmlns:vm="using:Bezysoftware.Navigation.Dialogs.Sample.ViewModels" />
 
-        <SolidColorBrush Color="White" Opacity="0.3" x:Key="SettingsDialogBackground" />
-        <SolidColorBrush Color="Black" Opacity="0.8" x:Key="SettingsDialogPaneBackground" />
+        <SolidColorBrush Color="White" Opacity="0.3" x:Key="SlidingDialogBackground" />
+        <SolidColorBrush Color="Black" Opacity="0.8" x:Key="SlidingDialogPaneBackground" />
     </Application.Resources>
 </Application>

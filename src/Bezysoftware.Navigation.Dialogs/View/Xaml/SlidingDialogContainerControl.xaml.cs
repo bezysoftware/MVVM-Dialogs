@@ -5,7 +5,7 @@
     using Windows.UI.Xaml.Input;
     using Windows.UI.Xaml.Controls;
 
-    internal sealed partial class SlidingDialogContainerControl : UserControl
+    public sealed partial class SlidingDialogContainerControl : UserControl
     {
         public SlidingDialogContainerControl()
         {
