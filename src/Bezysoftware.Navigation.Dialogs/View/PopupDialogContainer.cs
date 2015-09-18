@@ -28,8 +28,8 @@
             if (this.popup != null)
             {
                 Window.Current.SizeChanged -= this.WindowSizeChanged;
-                Window.Current.Content.KeyUp -= this.PopupKeyUp;
-                Window.Current.Content.KeyDown -= this.PopupKeyDown;
+                Window.Current.CoreWindow.KeyUp -= this.PopupKeyUp;
+                Window.Current.CoreWindow.KeyDown -= this.PopupKeyDown;
 
                 this.HideVisualContainer();
             }
@@ -46,8 +46,8 @@
             this.escapeDown = false;
 
             Window.Current.SizeChanged += this.WindowSizeChanged;
-            Window.Current.Content.KeyUp += this.PopupKeyUp;
-            Window.Current.Content.KeyDown += this.PopupKeyDown;
+            Window.Current.CoreWindow.KeyUp += this.PopupKeyUp;
+            Window.Current.CoreWindow.KeyDown += this.PopupKeyDown;
 
             var child = (UIElement) Activator.CreateInstance(viewType);
             var wrapper = CreateVisualContainer(child);
@@ -75,9 +75,9 @@
             this.popup.IsOpen = false;
         }
 
-        private void PopupKeyDown(object sender, KeyRoutedEventArgs e)
+        private void PopupKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Windows.System.VirtualKey.Escape)
+            if (e.VirtualKey == Windows.System.VirtualKey.Escape)
             {
                 this.escapeDown = true;
             }
@@ -87,9 +87,9 @@
             }
         }
 
-        private void PopupKeyUp(object sender, KeyRoutedEventArgs e)
+        private void PopupKeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Windows.System.VirtualKey.Escape && this.escapeDown)
+            if (e.VirtualKey == Windows.System.VirtualKey.Escape && this.escapeDown)
             {
                 this.NavigationService.GoBack();
             }
