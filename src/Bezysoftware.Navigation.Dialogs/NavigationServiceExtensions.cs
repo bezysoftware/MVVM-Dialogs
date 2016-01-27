@@ -29,7 +29,7 @@
         /// <typeparam name="TData"> Type of activation data you are passing to the target ViewModel </typeparam>
         /// <param name="service"> The navigation service. </param>
         /// <returns> Result from the <typeparamref name="TViewModel"/> or default(TResult) if navigation was prevented. </returns>
-        public static async Task<TResult> NavigateWithResultAsync<TViewModel, TData, TResult>(this INavigationService service, TData data) where TViewModel : IActivate<TData>
+        public static async Task<TResult> NavigateWithResultAsync<TViewModel, TData, TResult>(this INavigationService service, TData data) 
         {
             return await AwaitResultAsync<TResult>(() => service.NavigateAsync<TViewModel, TData>(data), service, service.ActiveViewModelType);
         }
@@ -52,7 +52,7 @@
         /// <typeparam name="TData"> Type of activation data you are passing to the target ViewModel </typeparam>
         /// <param name="service"> The navigation service. </param>
         /// <returns> Result from the <typeparamref name="TViewModel"/> or default(TResult) if navigation was prevented. </returns>
-        public static async Task NavigateAndWaitAsync<TViewModel, TData>(this INavigationService service, TData data) where TViewModel : IActivate<TData>
+        public static async Task NavigateAndWaitAsync<TViewModel, TData>(this INavigationService service, TData data)
         {
             await AwaitResultAsync<object>(() => service.NavigateAsync<TViewModel, TData>(data), service, service.ActiveViewModelType);
         }
