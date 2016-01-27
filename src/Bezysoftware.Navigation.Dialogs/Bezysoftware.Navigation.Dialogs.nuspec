@@ -17,7 +17,7 @@
     <dependencies>
       <group>
         <dependency id="Bezysoftware.Navigation" version="1.1.22" />
-        <dependency id="Microsoft.Xaml.Behaviors.Uwp.Managed" Version="1.0.3" />
+        <dependency id="Microsoft.Xaml.Behaviors.Uwp.Managed" version="1.0.3" />
       </group>
     </dependencies>
   </metadata>
