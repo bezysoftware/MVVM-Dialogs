@@ -3,16 +3,19 @@ namespace Bezysoftware.Navigation.Dialogs.Sample.ViewModels
     using GalaSoft.MvvmLight;
     using GalaSoft.MvvmLight.Command;
     using Bezysoftware.Navigation.Dialogs.ViewModel;
+    using Repository.Settings;
 
     public class MainViewModel : ViewModelBase
     {
         private string dialogResult;
         private readonly INavigationService navigationService;
+        private readonly ISettingsRepository<Settings> settings;
         private RelayCommand<string> showDialogCommand;
 
-        public MainViewModel(INavigationService navigationService)
+        public MainViewModel(INavigationService navigationService, ISettingsRepository<Settings> settings)
         {
             this.navigationService = navigationService;
+            this.settings = settings;
         }
         
         public string DialogResult

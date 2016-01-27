@@ -1,8 +1,16 @@
 ﻿{
   "dependencies": {
-    "Bezysoftware.Navigation": "1.0.5",
-    "Bezysoftware.Navigation.BackButton": "1.1.0",
+    "AutoMapper": "4.0.4",
+    "Bezysoftware.Navigation": "1.1.23",
+    "Bezysoftware.Navigation.BackButton": "1.1.8",
+    "Bezysoftware.Navigation.Dialogs": "1.1.18",
+    "Bezysoftware.Navigation.Dialogs.About": "1.0.23",
+    "Bezysoftware.Navigation.Dialogs.Settings": "1.1.8",
+    "Bezysoftware.Platform.Communication.Calls": "1.1.5",
+    "Bezysoftware.Platform.Communication.Chat": "1.1.4",
+    "Bezysoftware.Platform.Contacts": "1.1.5",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
+    "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3",
     "MvvmLightLibs": "5.2.0",
     "Unity": "3.5.1405-prerelease"
   },

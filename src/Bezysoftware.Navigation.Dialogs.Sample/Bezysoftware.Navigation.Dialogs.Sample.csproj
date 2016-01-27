@@ -11,8 +11,8 @@
     <AssemblyName>Bezysoftware.Navigation.Dialogs.Sample</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
@@ -90,6 +90,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="google_secrets.json" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +98,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AssemblyResolver\ThisAssemblyResolver.cs" />
+    <Compile Include="Common\ColorExtensions.cs" />
+    <Compile Include="Common\ColorsManager.cs" />
+    <Compile Include="Common\DependencyPropertyWatcher.cs" />
+    <Compile Include="Common\Grouping.cs" />
+    <Compile Include="Common\GroupingHelper.cs" />
+    <Compile Include="Common\IDayHeaderProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DialogViewModel.cs" />
     <Compile Include="ViewModels\DialogWithoutPageViewModel.cs" />
@@ -161,17 +168,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
-      <Name>Behaviors SDK %28XAML%29</Name>
-    </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Bezysoftware.Navigation.Dialogs\Bezysoftware.Navigation.Dialogs.csproj">
-      <Project>{1b074908-0ab5-46c9-b852-05820ff86e75}</Project>
-      <Name>Bezysoftware.Navigation.Dialogs</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
