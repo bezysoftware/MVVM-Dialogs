@@ -18,14 +18,7 @@
         /// <returns> Result from the <typeparamref name="TViewModel"/> or default(TResult) if navigation was prevented. </returns>
         public static async Task<TResult> NavigateWithResultAsync<TViewModel, TResult>(this INavigationService service) 
         {
-            var tcs = new TaskCompletionSource<TResult>();
-
-            if (await service.NavigateAsync<TViewModel>())
-            {
-                return await AwaitResultAsync(service, tcs);
-            }
-
-            return default(TResult);
+            return await AwaitResultAsync<TResult>(() => service.NavigateAsync<TViewModel>(), service, service.ActiveViewModelType);
         }
 
         /// <summary>
@@ -38,14 +31,30 @@
         /// <returns> Result from the <typeparamref name="TViewModel"/> or default(TResult) if navigation was prevented. </returns>
         public static async Task<TResult> NavigateWithResultAsync<TViewModel, TData, TResult>(this INavigationService service, TData data) where TViewModel : IActivate<TData>
         {
-            var tcs = new TaskCompletionSource<TResult>();
+            return await AwaitResultAsync<TResult>(() => service.NavigateAsync<TViewModel, TData>(data), service, service.ActiveViewModelType);
+        }
 
-            if (await service.NavigateAsync<TViewModel, TData>(data))
-            {
-                return await AwaitResultAsync(service, tcs);
-            }
+        /// <summary>
+        /// Awaitable method which navigates to given ViewModel and waits until it navigates back again.
+        /// </summary>
+        /// <typeparam name="TViewModel"> Type of ViewModel to navigate to. </typeparam>
+        /// <param name="service"> The navigation service. </param>
+        /// <returns> Result from the <typeparamref name="TViewModel"/> or default(TResult) if navigation was prevented. </returns>
+        public static async Task NavigateAndWaitAsync<TViewModel>(this INavigationService service)
+        {
+            await AwaitResultAsync<object>(() => service.NavigateAsync<TViewModel>(), service, service.ActiveViewModelType);
+        }
 
-            return default(TResult);
+        /// <summary>
+        /// Awaitable method which navigates to given ViewModel along with activation data and waits until it navigates back again.
+        /// </summary>
+        /// <typeparam name="TViewModel"> Type of ViewModel to navigate to. </typeparam>
+        /// <typeparam name="TData"> Type of activation data you are passing to the target ViewModel </typeparam>
+        /// <param name="service"> The navigation service. </param>
+        /// <returns> Result from the <typeparamref name="TViewModel"/> or default(TResult) if navigation was prevented. </returns>
+        public static async Task NavigateAndWaitAsync<TViewModel, TData>(this INavigationService service, TData data) where TViewModel : IActivate<TData>
+        {
+            await AwaitResultAsync<object>(() => service.NavigateAsync<TViewModel, TData>(data), service, service.ActiveViewModelType);
         }
 
         /// <summary>
@@ -62,13 +71,19 @@
             }
         }
 
-        private static async Task<TResult> AwaitResultAsync<TResult>(INavigationService service, TaskCompletionSource<TResult> tcs)
+        private static async Task<TResult> AwaitResultAsync<TResult>(Func<Task<bool>> navigationFunc, INavigationService service, Type currentViewModelType)
         {
+            var tcs = new TaskCompletionSource<TResult>();
+
             EventHandler<NavigationEventArgs> NavigatedAction = (s, r) =>
             {
                 try
                 {
-                    tcs.SetResult((TResult)r.ActivationData);
+                    // if returning to where I started
+                    if (r.ViewModelType == currentViewModelType)
+                    {
+                        tcs.SetResult((TResult)r.ActivationData);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -77,6 +92,13 @@
             };
 
             service.Navigated += NavigatedAction;
+
+            if (!(await navigationFunc()))
+            {
+                // if navigation forward does not occur (e.g. current VM could not be deactivated) set the result to default
+                tcs.SetResult(default(TResult));
+            }
+
             var result = await tcs.Task;
             service.Navigated -= NavigatedAction;
 
