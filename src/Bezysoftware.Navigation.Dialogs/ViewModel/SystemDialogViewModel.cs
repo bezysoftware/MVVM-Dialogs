@@ -8,7 +8,7 @@
     /// ViewModel which is used by <see cref="SystemDialogContainer"/>.
     /// </summary>
     [StatePersistenceBehavior(StatePersistenceBehaviorType.None)]
-    public class SystemDialogViewModel : IActivate<SystemDialogActivationData>
+    public class SystemDialogViewModel : IActivating<SystemDialogActivationData>
     {
         public SystemDialogActivationData ActivationData
         {
@@ -16,7 +16,7 @@
             private set;
         }
 
-        public void Activate(NavigationType navigationType, SystemDialogActivationData data)
+        public void Activating(NavigationType navigationType, SystemDialogActivationData data)
         {
             this.ActivationData = data;
         }
