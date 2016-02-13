@@ -1,5 +1,7 @@
 ﻿namespace Bezysoftware.Navigation.Dialogs.ViewModel
 {
+    using System;
+
     /// <summary>
     /// Activation data for <see cref="SystemDialogViewModel"/>
     /// </summary>
@@ -8,6 +10,8 @@
         public SystemDialogActivationData()
         {
             this.Commands = new string[] { "Ok" };
+            this.Message = string.Empty;
+            this.Title = string.Empty;
         }
 
         /// <summary>
