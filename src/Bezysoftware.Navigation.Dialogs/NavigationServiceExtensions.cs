@@ -3,6 +3,7 @@
     using Bezysoftware.Navigation.Activation;
     using System;
     using System.Threading.Tasks;
+    using Bezysoftware.Navigation.Dialogs.ViewModel;
 
     /// <summary>
     /// Dialog related extensions for the <see cref="INavigationService"/>
@@ -18,7 +19,7 @@
         /// <returns> Result from the <typeparamref name="TViewModel"/> or default(TResult) if navigation was prevented. </returns>
         public static async Task<TResult> NavigateWithResultAsync<TViewModel, TResult>(this INavigationService service) 
         {
-            return await AwaitResultAsync<TResult>(() => service.NavigateAsync<TViewModel>(), service, service.ActiveViewModelType);
+            return await AwaitResultAsync<TResult>(service.NavigateAsync<TViewModel>, service, service.ActiveViewModelType);
         }
 
         /// <summary>
@@ -42,7 +43,7 @@
         /// <returns> Result from the <typeparamref name="TViewModel"/> or default(TResult) if navigation was prevented. </returns>
         public static async Task NavigateAndWaitAsync<TViewModel>(this INavigationService service)
         {
-            await AwaitResultAsync<object>(() => service.NavigateAsync<TViewModel>(), service, service.ActiveViewModelType);
+            await AwaitResultAsync<object>(service.NavigateAsync<TViewModel>, service, service.ActiveViewModelType);
         }
 
         /// <summary>
@@ -55,6 +56,14 @@
         public static async Task NavigateAndWaitAsync<TViewModel, TData>(this INavigationService service, TData data)
         {
             await AwaitResultAsync<object>(() => service.NavigateAsync<TViewModel, TData>(data), service, service.ActiveViewModelType);
+        }
+
+        /// <summary>
+        /// Navigates to <see cref="SystemDialogViewModel"/>.
+        /// </summary>
+        public static async Task ShowSystemDialogAsync(this INavigationService service, string message, string title = "" )
+        {
+            await service.NavigateAsync<SystemDialogViewModel, SystemDialogActivationData>(new SystemDialogActivationData {Message = message, Title = title});
         }
 
         /// <summary>
@@ -75,7 +84,7 @@
         {
             var tcs = new TaskCompletionSource<TResult>();
 
-            EventHandler<NavigationEventArgs> NavigatedAction = (s, r) =>
+            EventHandler<NavigationEventArgs> navigatedAction = (s, r) =>
             {
                 try
                 {
@@ -91,7 +100,7 @@
                 }
             };
 
-            service.Navigated += NavigatedAction;
+            service.Navigated += navigatedAction;
 
             if (!(await navigationFunc()))
             {
@@ -100,7 +109,7 @@
             }
 
             var result = await tcs.Task;
-            service.Navigated -= NavigatedAction;
+            service.Navigated -= navigatedAction;
 
             return result;
         }
