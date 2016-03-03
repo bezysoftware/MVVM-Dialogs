@@ -121,9 +121,12 @@
     <Compile Include="Interception\DialogInterceptor.cs" />
     <Compile Include="NavigationServiceExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\InputDialogActivationData.cs" />
     <Compile Include="ViewModel\SystemDialogActivationData.cs" />
     <Compile Include="ViewModel\SystemDialogViewModel.cs" />
     <Compile Include="View\IDialogContainer.cs" />
+    <Compile Include="View\InputDialogContainer.cs" />
+    <Compile Include="ViewModel\InputDialogViewModel.cs" />
     <Compile Include="View\PopupDialogContainer.cs" />
     <Compile Include="View\SlidingDialogContainer.cs" />
     <Compile Include="View\SystemDialogContainer.cs" />
