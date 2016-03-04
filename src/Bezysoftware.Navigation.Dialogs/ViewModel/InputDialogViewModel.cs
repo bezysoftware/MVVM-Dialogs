@@ -8,15 +8,15 @@
     /// ViewModel which is used by <see cref="InputDialogContainer"/>.
     /// </summary>
     [StatePersistenceBehavior(StatePersistenceBehaviorType.None)]
-    public class InputDialogViewModel : IActivating<SystemDialogActivationData>
+    public class InputDialogViewModel : IActivating<InputDialogActivationData>
     {
-        public SystemDialogActivationData ActivationData
+        public InputDialogActivationData ActivationData
         {
             get;
             private set;
         }
 
-        public void Activating(NavigationType navigationType, SystemDialogActivationData data)
+        public void Activating(NavigationType navigationType, InputDialogActivationData data)
         {
             this.ActivationData = data;
         }

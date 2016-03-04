@@ -5,10 +5,12 @@
     using Bezysoftware.Navigation.Lookup;
     using Microsoft.Practices.ServiceLocation;
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using Windows.Foundation;
     using Windows.System;
     using Windows.UI.Popups;
+    using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
 
     /// <summary>
@@ -31,11 +33,27 @@
         {
             this.Initialize();
 
-            var dialog = new ContentDialog();
-            //ViewModel.ActivationData.Message, ViewModel.ActivationData.Title
+            var dialog = new ContentDialog
+            {
+                Title = this.ViewModel.ActivationData.Title,
+                MaxWidth = Window.Current.CoreWindow.Bounds.Width
+            };
 
-            var tb = new TextBox();
+            var panel = new StackPanel();
+            panel.Children.Add(new TextBlock
+            {
+                Text = this.ViewModel.ActivationData.Message,
+                TextWrapping = TextWrapping.Wrap,
+                Margin = new Thickness(0, 6, 0, 12)
+            });
 
+            var tb = new TextBox
+            {
+                Text = this.ViewModel.ActivationData.Text
+            };
+
+            panel.Children.Add(tb);
+            
             tb.KeyDown += (sender, args) =>
             {
                 if (args.Key == VirtualKey.Enter)
@@ -44,7 +62,11 @@
                 }
             };
 
-            dialog.Content = tb;
+            dialog.Content = panel;
+            dialog.PrimaryButtonText = this.ViewModel.ActivationData.Commands.FirstOrDefault() ?? "Ok";
+            dialog.SecondaryButtonText = this.ViewModel.ActivationData.Commands.Skip(1).FirstOrDefault() ?? string.Empty;
+
+            tb.Focus(FocusState.Programmatic);
 
             try
             {
@@ -52,7 +74,7 @@
                 var result = await this.dialogTask;
 
                 this.dialogTask = null;
-                await this.NavigationService.GoBackAsync(tb.Text);
+                await this.NavigationService.GoBackAsync(new InputDialogResult(result == ContentDialogResult.Primary ? dialog.PrimaryButtonText : dialog.SecondaryButtonText, tb.Text));
             }
             catch (TaskCanceledException ex)
             {
