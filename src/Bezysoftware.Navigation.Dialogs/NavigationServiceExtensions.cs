@@ -67,6 +67,22 @@
         }
 
         /// <summary>
+        /// Navigates to <see cref="InputDialogViewModel"/>.
+        /// </summary>
+        public static async Task<InputDialogResult> ShowInputDialogAsync(this INavigationService service, string message, string title = "", string originalText = "", string[] commands = null)
+        {
+            var data = new InputDialogActivationData
+            {
+                Message = message,
+                Title = title,
+                Text = originalText,
+                Commands = commands ?? new[] { "Ok" }
+            };
+
+            return await AwaitResultAsync<InputDialogResult>(() => service.NavigateAsync<InputDialogViewModel, InputDialogActivationData>(data), service, service.ActiveViewModelType);
+        }
+
+        /// <summary>
         /// Sets a default value to deactivation data when going back and deactivation data is null.
         /// </summary>
         /// <param name="parameters"> The deactivation parameters. </param>
