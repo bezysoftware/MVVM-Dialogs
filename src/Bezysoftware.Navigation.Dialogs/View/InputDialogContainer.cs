@@ -54,17 +54,22 @@
 
             panel.Children.Add(tb);
             
+            var primaryText = this.ViewModel.ActivationData.Commands.FirstOrDefault() ?? "Ok";
+            var secondaryText = this.ViewModel.ActivationData.Commands.Skip(1).FirstOrDefault() ?? string.Empty;
+            var returnValue = secondaryText;
+
             tb.KeyUp += (sender, args) =>
             {
                 if (args.Key == VirtualKey.Enter)
                 {
+                    returnValue = primaryText;
                     dialog.Hide();
                 }
             };
 
             dialog.Content = panel;
-            dialog.PrimaryButtonText = this.ViewModel.ActivationData.Commands.FirstOrDefault() ?? "Ok";
-            dialog.SecondaryButtonText = this.ViewModel.ActivationData.Commands.Skip(1).FirstOrDefault() ?? string.Empty;
+            dialog.PrimaryButtonText = primaryText;
+            dialog.SecondaryButtonText = secondaryText;
 
             tb.SelectionStart = tb.Text.Length;
             tb.Focus(FocusState.Programmatic);
@@ -73,9 +78,23 @@
             {
                 this.dialogTask = dialog.ShowAsync();
                 var result = await this.dialogTask;
+                var resultValue = string.Empty;
 
                 this.dialogTask = null;
-                await this.NavigationService.GoBackAsync(new InputDialogResult(result == ContentDialogResult.Primary ? dialog.PrimaryButtonText : dialog.SecondaryButtonText, tb.Text));
+                switch (result)
+                {
+                    case ContentDialogResult.None:
+                        resultValue = returnValue;
+                        break;
+                    case ContentDialogResult.Primary:
+                        resultValue = primaryText;
+                        break;
+                    case ContentDialogResult.Secondary:
+                        resultValue = secondaryText;
+                        break;
+                }
+
+                await this.NavigationService.GoBackAsync(new InputDialogResult(resultValue, tb.Text));
             }
             catch (TaskCanceledException ex)
             {
