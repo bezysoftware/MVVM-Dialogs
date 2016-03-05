@@ -54,7 +54,7 @@
 
             panel.Children.Add(tb);
             
-            tb.KeyDown += (sender, args) =>
+            tb.KeyUp += (sender, args) =>
             {
                 if (args.Key == VirtualKey.Enter)
                 {
@@ -66,6 +66,7 @@
             dialog.PrimaryButtonText = this.ViewModel.ActivationData.Commands.FirstOrDefault() ?? "Ok";
             dialog.SecondaryButtonText = this.ViewModel.ActivationData.Commands.Skip(1).FirstOrDefault() ?? string.Empty;
 
+            tb.SelectionStart = tb.Text.Length;
             tb.Focus(FocusState.Programmatic);
 
             try
