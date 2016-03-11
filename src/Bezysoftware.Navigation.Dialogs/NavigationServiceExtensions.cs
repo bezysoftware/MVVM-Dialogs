@@ -63,7 +63,22 @@
         /// </summary>
         public static async Task ShowSystemDialogAsync(this INavigationService service, string message, string title = "" )
         {
-            await service.NavigateAsync<SystemDialogViewModel, SystemDialogActivationData>(new SystemDialogActivationData {Message = message, Title = title});
+            await service.NavigateAndWaitAsync<SystemDialogViewModel, SystemDialogActivationData>(new SystemDialogActivationData {Message = message, Title = title});
+        }
+
+        /// <summary>
+        /// Navigates to <see cref="SystemDialogViewModel"/>.
+        /// </summary>
+        public static async Task<string> ShowConfirmationDialogAsync(this INavigationService service, string message, string title = "", string yesLabel = "", string noLabel = "")
+        {
+            var data = new SystemDialogActivationData
+            {
+                Message = message,
+                Title = title,
+                Commands = new[] { yesLabel, noLabel }
+            };
+
+            return await AwaitResultAsync<string>(() => service.NavigateAsync<SystemDialogViewModel, SystemDialogActivationData>(data), service, service.ActiveViewModelType);
         }
 
         /// <summary>
