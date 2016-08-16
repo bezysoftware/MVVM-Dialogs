@@ -116,7 +116,8 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lookup\AssociatedDialogViewModel.cs" />
+    <Compile Include="Interception\InPlaceDialogContainerAttribute.cs" />
+    <Compile Include="Lookup\AssociatedDialogViewModelAttribute.cs" />
     <Compile Include="Interception\DialogContainerAttribute.cs" />
     <Compile Include="Interception\DialogInterceptor.cs" />
     <Compile Include="NavigationServiceExtensions.cs" />
@@ -126,11 +127,13 @@
     <Compile Include="ViewModel\SystemDialogActivationData.cs" />
     <Compile Include="ViewModel\SystemDialogViewModel.cs" />
     <Compile Include="View\IDialogContainer.cs" />
+    <Compile Include="View\InPlaceDialogContainer.cs" />
     <Compile Include="View\InputDialogContainer.cs" />
     <Compile Include="ViewModel\InputDialogViewModel.cs" />
     <Compile Include="View\PopupDialogContainer.cs" />
     <Compile Include="View\SlidingDialogContainer.cs" />
     <Compile Include="View\SystemDialogContainer.cs" />
+    <Compile Include="View\VisualTreeExtensions.cs" />
     <Compile Include="View\Xaml\SlidingDialogContainerControl.xaml.cs">
       <DependentUpon>SlidingDialogContainerControl.xaml</DependentUpon>
     </Compile>

@@ -16,6 +16,7 @@
     {
         private readonly Dictionary<Type, IDialogContainer> dialogs;
         private readonly IEnumerable<IDialogContainer> dialogContainers;
+        private INavigationInterceptor innerNavigationInterceptor;
 
         public DialogInterceptor(IEnumerable<IDialogContainer> dialogContainers)
         {
@@ -33,8 +34,18 @@
         /// </summary>
         public INavigationInterceptor InnerNavigationInterceptor
         {
-            get;
-            set;
+            get
+            {
+                return this.innerNavigationInterceptor;
+            }
+            set
+            {
+                this.innerNavigationInterceptor = value;
+                if (this.innerNavigationInterceptor != null)
+                {
+                    this.innerNavigationInterceptor.ConditionChanged += this.ConditionChanged;
+                }
+            }
         }
 
         /// <summary>
@@ -42,7 +53,7 @@
         /// </summary>
         /// <param name="targetViewType">Type of target view that navigation is going for. </param>
         /// <returns> True if navigation should be prevented, otherwise false. </returns>
-        public bool InterceptNavigation(Type targetViewType)
+        public bool InterceptNavigation(Type targetViewType) 
         {
             var intercepted = this.InnerNavigationInterceptor?.InterceptNavigation(targetViewType) ?? false;
             var page = this.IsPageType(targetViewType);
@@ -120,7 +131,7 @@
 
         private Type GetViewTypeOverride(Type viewType)
         {
-            return viewType.GetTypeInfo().GetCustomAttribute<AssociatedDialogViewModel>()?.DialogType;
+            return viewType.GetTypeInfo().GetCustomAttribute<AssociatedDialogViewModelAttribute>()?.DialogType;
         }
     }
 }
