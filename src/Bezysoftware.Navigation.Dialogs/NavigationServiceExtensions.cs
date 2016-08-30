@@ -19,7 +19,7 @@
         /// <returns> Result from the <typeparamref name="TViewModel"/> or default(TResult) if navigation was prevented. </returns>
         public static async Task<TResult> NavigateWithResultAsync<TViewModel, TResult>(this INavigationService service) 
         {
-            return await AwaitResultAsync<TResult>(service.NavigateAsync<TViewModel>, service, service.ActiveViewModelType);
+            return await AwaitResultAsync<TResult>(() => service.NavigateAsync<TViewModel>(), service, service.ActiveViewModelType);
         }
 
         /// <summary>
@@ -43,7 +43,7 @@
         /// <returns> Result from the <typeparamref name="TViewModel"/> or default(TResult) if navigation was prevented. </returns>
         public static async Task NavigateAndWaitAsync<TViewModel>(this INavigationService service)
         {
-            await AwaitResultAsync<object>(service.NavigateAsync<TViewModel>, service, service.ActiveViewModelType);
+            await AwaitResultAsync<object>(() => service.NavigateAsync<TViewModel>(), service, service.ActiveViewModelType);
         }
 
         /// <summary>

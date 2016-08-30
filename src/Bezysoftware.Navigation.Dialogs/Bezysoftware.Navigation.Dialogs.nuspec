@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>MVVM Dialogs framework for UWP. It allows you to easily show dialogs from within your ViewModels without them knowing how the dialogs shouls be displayed.</description>
     <releaseNotes></releaseNotes>
-    <copyright>Copyright bezysoftware 2015</copyright>
+    <copyright>Copyright bezysoftware 2015</copyright> 
     <tags>MVVM UWP Navigation Dialogs</tags>
     <dependencies>
       <group>
@@ -22,11 +22,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\Bezysoftware.Navigation.Dialogs\View\Xaml\SlidingDialogContainerControl.xaml" target="lib\.NETCore50\Bezysoftware.Navigation.Dialogs\View\Xaml\SlidingDialogContainerControl.xaml" />
-    <file src="bin\Release\Bezysoftware.Navigation.Dialogs\Bezysoftware.Navigation.Dialogs.xr.xml" target="lib\.NETCore50\Bezysoftware.Navigation.Dialogs\Bezysoftware.Navigation.Dialogs.xr.xml" />
-    <file src="bin\Release\Bezysoftware.Navigation.Dialogs\Properties\Bezysoftware.Navigation.Dialogs.rd.xml" target="lib\.NETCore50\Bezysoftware.Navigation.Dialogs\Properties\Bezysoftware.Navigation.Dialogs.rd.xml" />
-    <file src="bin\Release\Bezysoftware.Navigation.Dialogs.dll" target="lib\.NETCore50\Bezysoftware.Navigation.Dialogs.dll" />
-    <file src="bin\Release\Bezysoftware.Navigation.Dialogs.pri" target="lib\.NETCore50\Bezysoftware.Navigation.Dialogs.pri" />
-    <file src="bin\Release\Bezysoftware.Navigation.Dialogs.pdb" target="lib\.NETCore50\Bezysoftware.Navigation.Dialogs.pdb" />
+    <file src="bin\Release\**" target="lib\netcore50" />
   </files>
 </package>
