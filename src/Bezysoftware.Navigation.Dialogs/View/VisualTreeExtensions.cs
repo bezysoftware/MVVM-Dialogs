@@ -1,12 +1,26 @@
 ﻿namespace Bezysoftware.Navigation.Dialogs.View
 {
     using System.Collections.Generic;
+    using System.Linq;
+
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Media;
 
     public static class VisualTreeExtensions
     {
-        public static IEnumerable<T> FindVisualChildren<T>(this DependencyObject parent) where T : class
+        /// <summary>
+        /// Finds visual children of given type
+        /// </summary>
+        /// <param name="parent"> The parent </param>
+        /// <typeparam name="T"> Type of visual child to look for </typeparam>
+        /// <returns> The <see cref="IEnumerable"/>. </returns>
+        public static IEnumerable<T> FindVisualChildren<T>(this DependencyObject parent)
+            where T : class
+        {
+            return FindVisualChildrenInternal<T>(parent).Concat(FindVisualChildrenInPopups<T>());
+        }
+
+        private static IEnumerable<T> FindVisualChildrenInternal<T>(DependencyObject parent) where T : class
         {
             if (parent != null)
             {
@@ -25,10 +39,21 @@
                         yield return child as T;
                     }
 
-                    foreach (T childOfChild in FindVisualChildren<T>(child))
+                    foreach (T childOfChild in FindVisualChildrenInternal<T>(child))
                     {
                         yield return childOfChild;
                     }
+                }
+            }
+        }
+
+        private static IEnumerable<T> FindVisualChildrenInPopups<T>() where T : class
+        {
+            foreach (var popup in VisualTreeHelper.GetOpenPopups(Window.Current))
+            {
+                foreach (T childOfChild in FindVisualChildrenInternal<T>(popup.Child))
+                {
+                    yield return childOfChild;
                 }
             }
         }
