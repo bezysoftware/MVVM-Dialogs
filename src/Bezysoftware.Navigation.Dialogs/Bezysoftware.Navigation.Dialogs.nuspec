@@ -22,6 +22,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\**" target="lib\netcore50" />
+    <file src="bin\$Configuration$\**" target="lib\netcore50" />
   </files>
 </package>
