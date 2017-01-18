@@ -17,15 +17,18 @@
 
         public void Hide(Type viewType)
         {
-            var top = this.activatedItems.Pop();
-            this.flipView.SelectedItem = top;
+            if (this.activatedItems.Any())
+            {
+                var top = this.activatedItems.Pop();
+                this.flipView.SelectedItem = top;
+            }
         }
 
         public void Show(Type viewType)
         {
             var attr = viewType.GetTypeInfo().GetCustomAttribute<FlipViewDialogContainerAttribute>();
 
-            this.flipView = Window.Current.Content.FindVisualChildren<FlipView>().FirstOrDefault(cp => cp.Name == attr.FlipViewName);
+            this.flipView = Window.Current.Content.FindVisualChildren<FlipView>().FirstOrDefault(cp => cp.Name == attr.FlipViewName) ?? this.flipView;
             var flipViewItem = flipView.Items.Cast<FlipViewItem>().First(item => item.Content.GetType() == viewType);
             this.activatedItems.Push((FlipViewItem)flipView.SelectedItem);
 
