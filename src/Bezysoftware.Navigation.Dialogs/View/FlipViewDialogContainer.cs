@@ -17,6 +17,7 @@
 
         public void Hide(Type viewType)
         {
+            System.Diagnostics.Debug.WriteLine($"Hide, there are {this.activatedItems.Count} items");
             this.activatedItems.Pop();
             var top = this.activatedItems.Peek();
             this.flipView.SelectedItem = top;
@@ -29,6 +30,8 @@
             this.flipView = Window.Current.Content.FindVisualChildren<FlipView>().FirstOrDefault(cp => cp.Name == attr.FlipViewName);
             var flipViewItem = flipView.Items.Cast<FlipViewItem>().First(item => item.Content.GetType() == viewType);
 
+            System.Diagnostics.Debug.WriteLine($"Show 1, there are {this.activatedItems.Count} items");
+
             if (this.activatedItems.Count == 0)
             {
                 this.activatedItems.Push((FlipViewItem)flipView.Items[flipView.SelectedIndex]);
@@ -37,6 +40,8 @@
             this.activatedItems.Push(flipViewItem);
 
             flipView.SelectedItem = flipViewItem;
+
+            System.Diagnostics.Debug.WriteLine($"Show 2, there are {this.activatedItems.Count} items");
         }
     }
 }
