@@ -143,10 +143,11 @@
     <Content Include="Properties\Bezysoftware.Navigation.Dialogs.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="View\Xaml\SlidingDialogContainerControl.xaml">
+    <Page Include="View\Xaml\SlidingDialogContainerControl.xaml">
       <SubType>Designer</SubType>
+      <Pack>true</Pack>
       <Generator>MSBuild:Compile</Generator>
-    </Content>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bezysoftware.Navigation">
