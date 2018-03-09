@@ -9,7 +9,7 @@
     {
         public SystemDialogActivationData()
         {
-            this.Commands = new string[] { "Ok" };
+            this.Commands = new string[] { "OK" };
             this.Message = string.Empty;
             this.Title = string.Empty;
         }
