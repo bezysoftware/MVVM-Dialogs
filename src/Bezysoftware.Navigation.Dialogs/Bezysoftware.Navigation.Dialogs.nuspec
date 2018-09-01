@@ -1,0 +1,27 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Bezysoftware.Navigation.Dialogs</id>
+    <version>$version$</version>
+    <title>MVVM Dialogs</title>
+    <authors>bezysoftware</authors>
+    <owners>bezysoftware</owners>
+    <licenseUrl>https://github.com/bezysoftware/MVVM-Dialogs/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/bezysoftware/MVVM-Dialogs</projectUrl>
+    <iconUrl>https://github.com/bezysoftware/MVVM-Dialogs/raw/master/art/logo.128x128.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>MVVM Dialogs framework for UWP. It allows you to easily show dialogs from within your ViewModels without them knowing how the dialogs shouls be displayed.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright bezysoftware 2015</copyright>
+    <tags>MVVM UWP Navigation Dialogs</tags>
+    <dependencies>
+      <group>
+        <dependency id="Bezysoftware.Navigation" version="1.1.65" />
+        <dependency id="Microsoft.Xaml.Behaviors.Uwp.Managed" version="2.0.0" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\$Configuration$\**" target="lib\netcore50" />
+  </files>
+</package>
