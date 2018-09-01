@@ -3,7 +3,7 @@
     using Bezysoftware.Navigation.Dialogs.Interception;
     using Bezysoftware.Navigation.Dialogs.ViewModel;
     using Bezysoftware.Navigation.Lookup;
-    using Microsoft.Practices.ServiceLocation;
+    using CommonServiceLocator;
     using System;
     using System.Linq;
     using System.Threading.Tasks;

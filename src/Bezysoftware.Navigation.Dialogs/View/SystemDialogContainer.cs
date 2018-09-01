@@ -6,7 +6,7 @@
     using Bezysoftware.Navigation.Dialogs.Interception;
     using Bezysoftware.Navigation.Dialogs.ViewModel;
     using Bezysoftware.Navigation.Lookup;
-    using Microsoft.Practices.ServiceLocation;
+    using CommonServiceLocator;
     using Windows.UI.Popups;
     using Windows.Foundation;
 

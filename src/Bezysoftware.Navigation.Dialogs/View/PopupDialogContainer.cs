@@ -1,6 +1,6 @@
 ﻿namespace Bezysoftware.Navigation.Dialogs.View
 {
-    using Microsoft.Practices.ServiceLocation;
+    using CommonServiceLocator;
     using System;
     using System.Threading.Tasks;
     using Windows.UI.Core;
