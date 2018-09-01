@@ -137,6 +137,7 @@
       <DependentUpon>SlidingDialogContainerControl.xaml</DependentUpon>
     </Compile>
     <Content Include="Properties\Bezysoftware.Navigation.Dialogs.rd.xml" />
+    <Content Include="View\Xaml\SlidingDialogContainerControl.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\Xaml\SlidingDialogContainerControl.xaml">
